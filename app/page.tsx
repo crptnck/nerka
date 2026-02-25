@@ -185,19 +185,19 @@ export default function Catalog() {
           <article key={p.id} className="card">
             <div className="card-img" style={{ background: p.color }}>
               <span style={{ opacity: 0.15, userSelect: "none" }}>🐟</span>
-              {p.stock <= 5 && <span className="card-badge" style={{ background: "#b45309" }}>Мало</span>}
+              {p.stock <= 5 && <span className="card-badge">Мало</span>}
             </div>
             <div className="card-body">
               <div className="card-title">{p.name}</div>
-              <div className="card-meta">{p.category} · ост. {p.stock} {p.unit}</div>
-              <div className="card-footer">
-                <div>
-                  <span className="card-price">{p.price} ₽</span>
-                  <span className="card-unit">/ {p.unit}</span>
+              <div className="card-row">
+                <span className="card-price">{p.price} ₽</span>
+                <span className="card-unit">/ {p.unit}</span>
+                <span className="card-meta">ост. {p.stock}</span>
+                <div className="qty">
+                  <button className="qty-btn">−</button>
+                  <span className="qty-val">0</span>
+                  <button className="qty-btn">+</button>
                 </div>
-                <a href="https://wa.me/79244034203" target="_blank" rel="noopener noreferrer" className="btn btn-sm">
-                  Заказать
-                </a>
               </div>
             </div>
           </article>
