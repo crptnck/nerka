@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 /* ─── Данные каталога ─────────────────────────────────────────── */
 /*
@@ -186,10 +186,73 @@ type Product = (typeof products)[number];
 export default function Catalog() {
   const [filter, setFilter] = useState("Все");
   const [selected, setSelected] = useState<Product | null>(null);
+  const [nextSectionIdx, setNextSectionIdx] = useState<number | null>(1);
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const filtered = filter === "Все"
-    ? products
-    : products.filter((p) => p.category === filter);
+  const showSections = filter === "Все";
+  const filtered = filter === "Все" ? products : products.filter((p) => p.category === filter);
+
+  /* Группировка по категориям для секционного вида */
+  const grouped = categories.slice(1).map(cat => ({
+    name: cat,
+    items: products.filter(p => p.category === cat)
+  })).filter(g => g.items.length > 0);
+
+  /* Скролл: уменьшение шапки + отслеживание секций */
+  useEffect(() => {
+    const onScroll = () => {
+      document.body.classList.toggle('scrolled', window.scrollY > 10);
+      if (!showSections) { setNextSectionIdx(null); return; }
+      let current = 0;
+      for (let i = 0; i < sectionRefs.current.length; i++) {
+        const el = sectionRefs.current[i];
+        if (el && el.getBoundingClientRect().top <= 50) current = i;
+      }
+      setNextSectionIdx(current + 1 < grouped.length ? current + 1 : null);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [showSections, grouped.length]);
+
+  const scrollToSection = (idx: number) => {
+    if (idx < 0) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    const el = sectionRefs.current[idx];
+    if (!el) return;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 41, behavior: 'smooth' });
+  };
+
+  /* Рендер карточки товара */
+  const renderCard = (p: Product) => (
+    <article
+      key={p.id}
+      className="card"
+      onClick={() => setSelected(p)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === "Enter" && setSelected(p)}
+    >
+      <div className="card-img">
+        <picture>
+          <source srcSet={`/images/products/thumb/${p.image}.webp`} type="image/webp" />
+          <img src={`/images/products/fallback/${p.image}.jpg`} alt={p.name} width={72} height={72} loading="lazy" decoding="async" />
+        </picture>
+        {p.stock <= 5 && <span className="card-badge">Мало</span>}
+      </div>
+      <div className="card-body">
+        <div className="card-title">{p.name}</div>
+        <div className="card-row">
+          <span className="card-price">{p.price} ₽</span>
+          <span className="card-unit">/ {p.unit}</span>
+          <div className="qty">
+            <button className="qty-btn" onClick={(e) => e.stopPropagation()}>−</button>
+            <span className="qty-val">0</span>
+            <button className="qty-btn" onClick={(e) => e.stopPropagation()}>+</button>
+          </div>
+        </div>
+      </div>
+    </article>
+  );
 
   return (
     <div className="container">
@@ -211,46 +274,30 @@ export default function Catalog() {
         ))}
       </section>
 
-      {/* ── Сетка товаров ── */}
-      <section className="grid">
-        {filtered.map((p) => (
-          <article
-            key={p.id}
-            className="card"
-            onClick={() => setSelected(p)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && setSelected(p)}
-          >
-            <div className="card-img">
-              <picture>
-                <source srcSet={`/images/products/thumb/${p.image}.webp`} type="image/webp" />
-                <img
-                  src={`/images/products/fallback/${p.image}.jpg`}
-                  alt={p.name}
-                  width={72}
-                  height={72}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </picture>
-              {p.stock <= 5 && <span className="card-badge">Мало</span>}
+      {/* ── Каталог: секции или плоская сетка ── */}
+      {showSections ? (
+        grouped.map((group, gi) => (
+          <div key={group.name} className="section-group">
+            <div
+              className="section-bar"
+              ref={el => { sectionRefs.current[gi] = el; }}
+              onClick={() => scrollToSection(gi - 1)}
+            >
+              {group.name}
             </div>
-            <div className="card-body">
-              <div className="card-title">{p.name}</div>
-              <div className="card-row">
-                <span className="card-price">{p.price} ₽</span>
-                <span className="card-unit">/ {p.unit}</span>
-                <div className="qty">
-                  <button className="qty-btn" onClick={(e) => e.stopPropagation()}>−</button>
-                  <span className="qty-val">0</span>
-                  <button className="qty-btn" onClick={(e) => e.stopPropagation()}>+</button>
-                </div>
-              </div>
-            </div>
-          </article>
-        ))}
-      </section>
+            <section className="grid">{group.items.map(renderCard)}</section>
+          </div>
+        ))
+      ) : (
+        <section className="grid">{filtered.map(renderCard)}</section>
+      )}
+
+      {/* ── Полоска следующего раздела (прибита к низу) ── */}
+      {showSections && nextSectionIdx !== null && (
+        <div className="section-next" onClick={() => scrollToSection(nextSectionIdx)}>
+          {grouped[nextSectionIdx].name} ↓
+        </div>
+      )}
 
       {/* ── Модалка детальной карточки ── */}
       {selected && (

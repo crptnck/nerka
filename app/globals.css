@@ -41,7 +41,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   display: flex; align-items: center; justify-content: space-between;
   height: 56px;
   max-width: 1200px; margin: 0 auto; padding: 0 16px;
+  transition: height 0.15s;
 }
+body.scrolled .header-inner { height: 40px; }
 .logo { display: flex; align-items: baseline; font-size: 24px; font-weight: 700; }
 .logo-red { color: var(--brand); }
 .logo-dot { color: #fff; }
@@ -86,7 +88,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   display: grid;
   grid-template-columns: 1fr;
   gap: 8px;
-  padding-bottom: 48px;
+  padding-bottom: 12px;
 }
 .card {
   background: var(--surface);
@@ -181,7 +183,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 @media (min-width: 768px) {
   .container { padding: 0 12px; }
   .header-inner { height: 64px; padding: 0 24px; }
-.logo { font-size: 28px; }
+  .logo { font-size: 28px; }
+  .section-bar { top: 64px; }
   .nav { display: flex; }
   .hero { padding: 56px 0; }
   .hero h1 { font-size: 36px; }
@@ -276,4 +279,38 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   padding: 8px 20px;
   font-size: 14px;
   border-radius: 8px;
+}
+
+/* ---- Section navigation ---- */
+.section-bar {
+  position: sticky;
+  top: 56px;
+  z-index: 40;
+  background: var(--bg);
+  padding: 8px 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: top 0.15s;
+  border-bottom: 1px solid var(--border);
+}
+body.scrolled .section-bar { top: 40px; }
+.section-group:last-child { padding-bottom: 48px; }
+.section-next {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 45;
+  background: rgba(17,17,17,0.95);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border);
+  padding: 10px 16px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--brand);
+  cursor: pointer;
 }
