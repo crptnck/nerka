@@ -14,7 +14,7 @@ import { useState } from "react";
 const products = [
   { id: 1, name: "Зубатка вяленая 23+", price: "2 250", unit: "кг", stock: 103, category: "Морепродукты", color: "#1e3a5f", image: "dried-whole-fish" },
   { id: 2, name: "Зубатка вяленая икряная", price: "3 400", unit: "кг", stock: 5, category: "Морепродукты", color: "#1e3a5f", image: "dried-whole-fish" },
-  { id: 3, name: "Икра камбалы", price: "2 100", unit: "кг", stock: 4, category: "Морепродукты", color: "#1e3a5f", image: "fish-roe" },
+  { id: 3, name: "Икра камбалы", price: "2 100", unit: "кг", stock: 4, category: "Морепродукты", color: "#1e3a5f", image: "fish-roe", desc: "Натуральная икра камбалы дальневосточного вылова. Солёная, вяленая, готова к употреблению. Отлично подходит как закуска к пиву и для розничной перепродажи. Фасовка оптом от 1 кг. Срок хранения 6 мес." },
   { id: 4, name: "Камбала б/ш", price: "1 350", unit: "кг", stock: 30, category: "Морепродукты", color: "#1e3a5f", image: "dried-whole-fish" },
   { id: 5, name: "Камбала вяленая L", price: "1 145", unit: "кг", stock: 12, category: "Морепродукты", color: "#1e3a5f", image: "dried-whole-fish" },
   { id: 6, name: "Камбала вяленая M", price: "1 155", unit: "кг", stock: 20, category: "Морепродукты", color: "#1e3a5f", image: "dried-whole-fish" },
@@ -273,7 +273,7 @@ export default function Catalog() {
               {selected.stock <= 5 && (
                 <span className="modal-stock-low">Мало</span>
               )}
-              <p className="modal-desc">{selected.category}. Опт, доставка по Хабаровску и ДВ.</p>
+              <p className="modal-desc">{'desc' in selected && selected.desc ? selected.desc : `${selected.category}. Опт, доставка по Хабаровску и ДВ.`}</p>
               <div className="modal-bottom">
                 <span className="modal-price-val">{selected.price} ₽<span className="modal-price-unit">/{selected.unit}</span></span>
                 <div className="modal-qty">
