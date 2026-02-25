@@ -308,11 +308,12 @@ body.scrolled .section-bar { top: 40px; }
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-top: 1px solid var(--border);
-  padding: 8px 16px;
+  padding: 6px 4px;
   text-align: center;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--brand);
+  letter-spacing: 0.04em;
   text-transform: lowercase;
   cursor: pointer;
 }
