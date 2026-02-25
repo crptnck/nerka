@@ -42,7 +42,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   height: 56px;
   max-width: 1200px; margin: 0 auto; padding: 0 16px;
 }
-.logo { display: flex; align-items: baseline; font-size: 21px; font-weight: 700; }
+.logo { display: flex; align-items: baseline; font-size: 24px; font-weight: 700; }
 .logo-red { color: var(--brand); }
 .logo-dot { color: #fff; }
 
@@ -181,7 +181,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 @media (min-width: 768px) {
   .container { padding: 0 12px; }
   .header-inner { height: 64px; padding: 0 24px; }
-.logo { font-size: 25px; }
+.logo { font-size: 28px; }
   .nav { display: flex; }
   .hero { padding: 56px 0; }
   .hero h1 { font-size: 36px; }
