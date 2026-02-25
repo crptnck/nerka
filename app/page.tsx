@@ -269,10 +269,7 @@ export default function Catalog() {
               </picture>
             </div>
             <div className="modal-body">
-              <h2 className="modal-title">{selected.name}</h2>
-              {selected.stock <= 5 && (
-                <span className="modal-stock-low">Мало</span>
-              )}
+              <h2 className="modal-title">{selected.name}{selected.stock <= 5 && <span className="modal-stock-low">Мало</span>}</h2>
               <p className="modal-desc">{'desc' in selected && selected.desc ? selected.desc : `${selected.category}. Опт, доставка по Хабаровску и ДВ.`}</p>
               <div className="modal-bottom">
                 <span className="modal-price-val">{selected.price} ₽<span className="modal-price-unit">/{selected.unit}</span></span>
