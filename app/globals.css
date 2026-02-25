@@ -42,7 +42,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   height: 56px;
   max-width: 1200px; margin: 0 auto; padding: 0 16px;
 }
-.logo { display: flex; align-items: baseline; font-size: 24px; font-weight: 700; }
+.logo { display: flex; align-items: baseline; font-size: 24px; font-weight: 400; }
 .logo-red { color: var(--brand); }
 .logo-dot { color: #fff; }
 
