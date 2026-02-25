@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useCart } from "./cart-context";
+import CartView from "./cart-view";
 
 /* ─── Данные каталога ─────────────────────────────────────────── */
 /*
@@ -184,6 +186,7 @@ type Product = (typeof products)[number];
 /* ─── Компонент каталога ──────────────────────────────────────── */
 
 export default function Catalog() {
+  const { cart, setQty, view } = useCart();
   const [filter, setFilter] = useState("Все");
   const [selected, setSelected] = useState<Product | null>(null);
   const [nextSectionIdx, setNextSectionIdx] = useState<number | null>(1);
@@ -245,9 +248,9 @@ export default function Catalog() {
           <span className="card-price">{p.price} ₽</span>
           <span className="card-unit">/ {p.unit}</span>
           <div className="qty">
-            <button className="qty-btn" onClick={(e) => e.stopPropagation()}>−</button>
-            <span className="qty-val">0</span>
-            <button className="qty-btn" onClick={(e) => e.stopPropagation()}>+</button>
+            <button className="qty-btn" onClick={(e) => { e.stopPropagation(); setQty(p.id, -1); }}>−</button>
+            <span className="qty-val">{cart[p.id] || 0}</span>
+            <button className="qty-btn" onClick={(e) => { e.stopPropagation(); setQty(p.id, +1); }}>+</button>
           </div>
         </div>
       </div>
@@ -265,6 +268,15 @@ export default function Catalog() {
     "Кета полуспинка хк",
   ];
   const promoItems = promoNames.map(n => products.find(p => p.name === n)).filter(Boolean) as Product[];
+
+  /* ── Корзина ── */
+  if (view === "cart" || view === "thanks") {
+    return (
+      <div className="container">
+        <CartView products={products} />
+      </div>
+    );
+  }
 
   return (
     <div className="container">
@@ -335,11 +347,11 @@ export default function Catalog() {
               <div className="modal-bottom">
                 <span className="modal-price-val">{selected.price} ₽<span className="modal-price-unit">/{selected.unit}</span></span>
                 <div className="modal-qty">
-                  <button className="qty-btn">−</button>
-                  <span className="qty-val">0</span>
-                  <button className="qty-btn">+</button>
+                  <button className="qty-btn" onClick={() => setQty(selected.id, -1)}>−</button>
+                  <span className="qty-val">{cart[selected.id] || 0}</span>
+                  <button className="qty-btn" onClick={() => setQty(selected.id, +1)}>+</button>
                 </div>
-                <button className="btn btn-ok">OK</button>
+                <button className="btn btn-ok" onClick={() => setSelected(null)}>OK</button>
               </div>
             </div>
           </div>

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { CartProvider } from "./cart-context";
+import HeaderCart from "./header-cart";
 
 export const metadata: Metadata = {
   title: "nerka.pro — Опт морепродуктов и снеков",
@@ -13,6 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
+        <CartProvider>
         <header className="header">
           <div className="header-inner">
             <a href="/" className="logo">
@@ -29,12 +32,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
             <div className="header-right">
               <a href="tel:+79244034203" className="header-phone">+7 924 403-42-03</a>
+              <HeaderCart />
             </div>
           </div>
         </header>
 
         <main>{children}</main>
 
+        </CartProvider>
         <footer id="contacts" className="footer">
           <div className="container">
             <div className="footer-grid">

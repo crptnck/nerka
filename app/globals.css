@@ -301,6 +301,123 @@ body.scrolled .header-inner { height: 40px; }
 body.scrolled .section-bar { top: 40px; }
 .section-bar-promo { color: var(--brand); }
 .section-group:last-child { padding-bottom: 48px; }
+/* ---- Cart icon (header) ---- */
+.cart-icon {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  color: #fff;
+  transition: color 0.15s;
+}
+.cart-icon:hover { color: var(--brand); }
+.cart-badge {
+  position: absolute; top: 0; right: 0;
+  background: var(--brand); color: #fff;
+  font-size: 10px; font-weight: 700;
+  min-width: 16px; height: 16px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+/* ---- Cart view ---- */
+.cart-wrap { padding: 12px 0 80px; }
+.cart-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px;
+}
+.cart-heading { font-size: 18px; font-weight: 700; color: #fff; }
+.cart-back {
+  font-size: 13px; color: var(--muted);
+  transition: color 0.15s;
+}
+.cart-back:hover { color: #fff; }
+.cart-empty { color: var(--muted); text-align: center; padding: 40px 0; }
+
+.cart-list { display: flex; flex-direction: column; gap: 8px; }
+.cart-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex; align-items: stretch;
+  height: 64px; overflow: hidden;
+}
+.cart-item-img {
+  width: 64px; min-width: 64px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; background: var(--bg);
+}
+.cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+.cart-item-body {
+  flex: 1; min-width: 0;
+  padding: 8px 12px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.cart-item-name {
+  font-size: 12px; font-weight: 600; color: #fff;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+.cart-item-row { display: flex; align-items: center; gap: 8px; }
+
+.cart-footer { margin-top: 16px; display: flex; flex-direction: column; gap: 12px; }
+.cart-total {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 16px; font-weight: 600; color: #fff;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+}
+.cart-total-val { color: var(--brand); font-size: 20px; font-weight: 800; }
+.cart-comment {
+  width: 100%; padding: 10px 12px;
+  background: var(--surface); color: #fff;
+  border: 1px solid var(--border); border-radius: 8px;
+  font-size: 13px; resize: none;
+  font-family: inherit;
+}
+.cart-comment::placeholder { color: var(--muted); }
+.cart-confirm { width: 100%; text-align: center; padding: 12px; font-size: 15px; }
+
+/* ---- Checkout form ---- */
+.checkout-form { padding: 24px 0; max-width: 400px; margin: 0 auto; }
+.checkout-form form { display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
+.form-label {
+  display: flex; flex-direction: column; gap: 4px;
+  font-size: 13px; color: var(--muted);
+}
+.form-req { color: var(--brand); }
+.form-input {
+  padding: 10px 12px;
+  background: var(--surface); color: #fff;
+  border: 1px solid var(--border); border-radius: 8px;
+  font-size: 14px; font-family: inherit;
+  transition: border-color 0.15s;
+}
+.form-input:focus { outline: none; border-color: var(--brand); }
+.form-input::placeholder { color: var(--muted); }
+.form-actions { display: flex; gap: 8px; margin-top: 8px; }
+.form-actions .btn { flex: 1; text-align: center; padding: 12px; }
+.btn-secondary {
+  background: var(--surface); border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--surface-hover); }
+
+/* ---- Thanks screen ---- */
+.thanks-screen {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 80px 16px; gap: 12px;
+}
+.thanks-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--brand); color: #fff;
+  font-size: 28px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 8px;
+}
+.thanks-screen h2 { font-size: 20px; font-weight: 700; color: #fff; }
+.thanks-screen p { font-size: 14px; color: var(--muted); }
+
 .section-next {
   position: fixed;
   bottom: 0; left: 0; right: 0;
