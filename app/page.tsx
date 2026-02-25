@@ -3,7 +3,13 @@
 import { useState } from "react";
 
 /* ─── Данные каталога ─────────────────────────────────────────── */
-/* image: slug фото-группы → /images/products/thumb|full/{slug}.webp */
+/*
+ * image: slug фото-группы → 4 файла на slug:
+ *   micro/{slug}.webp     — ~1KB  blur-placeholder (32×32)
+ *   thumb/{slug}.webp     — ~5KB  превью в списке (120×120)
+ *   full/{slug}.webp      — ~15KB детальная карточка (400×400)
+ *   fallback/{slug}.jpg   — ~25KB JPEG совместимость (400×400)
+ */
 
 const products = [
   { id: 1, name: "Зубатка вяленая 23+", price: "2 250", unit: "кг", stock: 103, category: "Морепродукты", color: "#1e3a5f", image: "dried-whole-fish" },
@@ -217,14 +223,17 @@ export default function Catalog() {
             onKeyDown={(e) => e.key === "Enter" && setSelected(p)}
           >
             <div className="card-img">
-              <img
-                src={`/images/products/thumb/${p.image}.webp`}
-                alt={p.name}
-                width={72}
-                height={72}
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcSet={`/images/products/thumb/${p.image}.webp`} type="image/webp" />
+                <img
+                  src={`/images/products/fallback/${p.image}.jpg`}
+                  alt={p.name}
+                  width={72}
+                  height={72}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               {p.stock <= 5 && <span className="card-badge">Мало</span>}
             </div>
             <div className="card-body">
@@ -249,12 +258,15 @@ export default function Catalog() {
           <div className="modal" onClick={(e) => e.stopPropagation()}>
             <button className="modal-close" onClick={() => setSelected(null)} aria-label="Закрыть">×</button>
             <div className="modal-img">
-              <img
-                src={`/images/products/full/${selected.image}.webp`}
-                alt={selected.name}
-                width={400}
-                height={400}
-              />
+              <picture>
+                <source srcSet={`/images/products/full/${selected.image}.webp`} type="image/webp" />
+                <img
+                  src={`/images/products/fallback/${selected.image}.jpg`}
+                  alt={selected.name}
+                  width={400}
+                  height={400}
+                />
+              </picture>
             </div>
             <div className="modal-body">
               <span className="modal-cat">{selected.category}</span>
