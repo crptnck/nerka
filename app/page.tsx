@@ -269,21 +269,20 @@ export default function Catalog() {
               </picture>
             </div>
             <div className="modal-body">
-              <span className="modal-cat">{selected.category}</span>
               <h2 className="modal-title">{selected.name}</h2>
-              <div className="modal-price">
-                <span className="modal-price-val">{selected.price} ₽</span>
-                <span className="modal-price-unit">/ {selected.unit}</span>
-              </div>
               {selected.stock <= 5 && (
-                <span className="modal-stock-low">Осталось мало — {selected.stock} {selected.unit}</span>
+                <span className="modal-stock-low">Мало</span>
               )}
-              <div className="modal-qty">
-                <button className="qty-btn">−</button>
-                <span className="qty-val">0</span>
-                <button className="qty-btn">+</button>
+              <p className="modal-desc">{selected.category}. Опт, доставка по Хабаровску и ДВ.</p>
+              <div className="modal-bottom">
+                <span className="modal-price-val">{selected.price} ₽<span className="modal-price-unit">/{selected.unit}</span></span>
+                <div className="modal-qty">
+                  <button className="qty-btn">−</button>
+                  <span className="qty-val">0</span>
+                  <button className="qty-btn">+</button>
+                </div>
+                <button className="btn btn-ok">OK</button>
               </div>
-              <a href="https://wa.me/79244034203" className="btn modal-order">Заказать в WhatsApp</a>
             </div>
           </div>
         </div>
