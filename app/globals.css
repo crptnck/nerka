@@ -293,6 +293,7 @@ body.scrolled .header-inner { height: 40px; }
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  text-align: center;
   cursor: pointer;
   transition: top 0.15s;
   border-bottom: 1px solid var(--border);
@@ -312,5 +313,6 @@ body.scrolled .section-bar { top: 40px; }
   font-size: 13px;
   font-weight: 600;
   color: var(--brand);
+  text-transform: none;
   cursor: pointer;
 }

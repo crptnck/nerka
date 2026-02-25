@@ -295,7 +295,7 @@ export default function Catalog() {
       {/* ── Полоска следующего раздела (прибита к низу) ── */}
       {showSections && nextSectionIdx !== null && (
         <div className="section-next" onClick={() => scrollToSection(nextSectionIdx)}>
-          {grouped[nextSectionIdx].name} ↓
+          ↓ {grouped[nextSectionIdx].name} ↓
         </div>
       )}
 
