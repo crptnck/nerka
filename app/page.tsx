@@ -192,7 +192,6 @@ export default function Catalog() {
               <div className="card-row">
                 <span className="card-price">{p.price} ₽</span>
                 <span className="card-unit">/ {p.unit}</span>
-                <span className="card-meta">ост. {p.stock}</span>
                 <div className="qty">
                   <button className="qty-btn">−</button>
                   <span className="qty-val">0</span>
@@ -204,13 +203,6 @@ export default function Catalog() {
         ))}
       </section>
 
-      <section className="cta">
-        <h2>Нужен индивидуальный прайс?</h2>
-        <p>Напишите нам — подберём ассортимент и объёмы под ваш бизнес.</p>
-        <a href="https://wa.me/79244034203" target="_blank" rel="noopener noreferrer" className="btn">
-          Написать в WhatsApp
-        </a>
-      </section>
     </div>
   );
 }

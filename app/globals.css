@@ -27,7 +27,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 ::selection { background: var(--brand); color: #fff; }
 
 /* ---- Layout ---- */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 8px; }
 
 /* ---- Header ---- */
 .header {
@@ -51,7 +51,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 .nav .active { color: #fff; font-weight: 500; }
 
 .header-right { display: flex; align-items: center; gap: 12px; }
-.header-phone { display: none; font-size: 14px; font-weight: 500; color: #fff; }
+.header-phone { font-size: 14px; font-weight: 500; color: #fff; }
 .header-phone:hover { color: var(--brand); }
 
 .btn {
@@ -149,15 +149,6 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   font-size: 13px; font-weight: 600; color: #fff;
 }
 
-/* ---- CTA ---- */
-.cta {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 16px; padding: 32px 24px;
-  text-align: center; margin-bottom: 48px;
-}
-.cta h2 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
-.cta p { color: var(--muted); font-size: 14px; margin-bottom: 20px; max-width: 400px; margin-left: auto; margin-right: auto; }
-
 /* ---- Footer ---- */
 .footer {
   border-top: 1px solid var(--border);
@@ -180,18 +171,15 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 /* ---- Responsive ---- */
 @media (min-width: 640px) {
   .grid { grid-template-columns: repeat(2, 1fr); }
-  .header-phone { display: block; }
 }
 @media (min-width: 768px) {
-  .container { padding: 0 24px; }
+  .container { padding: 0 12px; }
   .header-inner { height: 64px; padding: 0 24px; }
   .logo { font-size: 28px; }
   .nav { display: flex; }
   .hero { padding: 56px 0; }
   .hero h1 { font-size: 36px; }
   .hero p { font-size: 16px; }
-  .cta { padding: 48px 40px; }
-  .cta h2 { font-size: 24px; }
   .footer-grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (min-width: 1024px) {

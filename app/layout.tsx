@@ -29,9 +29,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
             <div className="header-right">
               <a href="tel:+79244034203" className="header-phone">+7 924 403-42-03</a>
-              <a href="https://wa.me/79244034203" target="_blank" rel="noopener noreferrer" className="btn">
-                Написать
-              </a>
             </div>
           </div>
         </header>
