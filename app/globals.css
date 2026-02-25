@@ -299,6 +299,7 @@ body.scrolled .header-inner { height: 40px; }
   border-bottom: 1px solid var(--border);
 }
 body.scrolled .section-bar { top: 40px; }
+.section-bar-promo { color: var(--brand); }
 .section-group:last-child { padding-bottom: 48px; }
 .section-next {
   position: fixed;

@@ -254,12 +254,20 @@ export default function Catalog() {
     </article>
   );
 
+  /* Акционные позиции (помечены «А» в прайсе) */
+  const promoNames = [
+    "Щупальца кальмара с/в",
+    "Зубатка вяленая 23+",
+    "Фисташка в/с",
+    "Сыр косичка слив Элазан 125гр",
+    "Юкола форели",
+    "Минтай филе сушеный",
+    "Кета полуспинка хк",
+  ];
+  const promoItems = promoNames.map(n => products.find(p => p.name === n)).filter(Boolean) as Product[];
+
   return (
     <div className="container">
-      <section className="hero">
-        <h1>Опт морепродуктов и снеков</h1>
-        <p>Прямые поставки с Дальнего Востока. Свежая и свежемороженая продукция для HoReCa и розничных сетей.</p>
-      </section>
 
       {/* ── Фильтры категорий ── */}
       <section className="filters">
@@ -275,12 +283,18 @@ export default function Catalog() {
       </section>
 
       {/* ── Каталог: секции или плоская сетка ── */}
+      {showSections && promoItems.length > 0 && (
+        <div className="section-group">
+          <div className="section-bar section-bar-promo">Акция</div>
+          <section className="grid">{promoItems.map(renderCard)}</section>
+        </div>
+      )}
       {showSections ? (
         grouped.map((group, gi) => (
           <div key={group.name} className="section-group">
             <div
               className="section-bar"
-              ref={el => { sectionRefs.current[gi] = el; }}
+              ref={el => { sectionRefs.current[gi] = el as HTMLDivElement; }}
               onClick={() => scrollToSection(gi - 1)}
             >
               {group.name}
