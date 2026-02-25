@@ -287,7 +287,7 @@ body.scrolled .header-inner { height: 40px; }
   top: 56px;
   z-index: 40;
   background: var(--bg);
-  padding: 8px 4px;
+  padding: 6px 4px;
   font-size: 12px;
   font-weight: 600;
   color: var(--muted);
@@ -308,11 +308,11 @@ body.scrolled .section-bar { top: 40px; }
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-top: 1px solid var(--border);
-  padding: 10px 16px;
+  padding: 8px 16px;
   text-align: center;
   font-size: 13px;
   font-weight: 600;
   color: var(--brand);
-  text-transform: none;
+  text-transform: lowercase;
   cursor: pointer;
 }
