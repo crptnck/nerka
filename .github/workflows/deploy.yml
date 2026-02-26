@@ -24,6 +24,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          NEXT_PUBLIC_TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          NEXT_PUBLIC_TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
