@@ -10,7 +10,7 @@
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; touch-action: manipulation; }
 
 body {
   background: var(--bg);
@@ -96,7 +96,7 @@ body.scrolled .search-bar { top: 40px; }
   flex: 1; padding: 10px 14px;
   background: var(--surface); color: #fff;
   border: 1px solid var(--border); border-radius: 8px;
-  font-size: 14px; font-family: inherit;
+  font-size: 16px; font-family: inherit;
   transition: border-color 0.15s;
 }
 .search-input:focus { outline: none; border-color: var(--brand); }
@@ -104,11 +104,11 @@ body.scrolled .search-bar { top: 40px; }
 .search-close {
   width: 36px; height: 36px;
   display: flex; align-items: center; justify-content: center;
-  color: var(--muted); font-size: 16px;
+  color: var(--brand); font-size: 22px; font-weight: 700;
   border-radius: 8px;
   transition: all 0.15s;
 }
-.search-close:hover { color: #fff; background: var(--surface); }
+.search-close:hover { color: #fff; background: var(--brand); }
 .chip-search { border-style: dashed; }
 
 /* ---- Product Grid ---- */
