@@ -49,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <span className="logo-dot">.</span>
                   <span className="logo-red">pro</span>
                 </div>
-                <p>Оптовые поставки морепродуктов,<br />снеков и закусок к пиву.</p>
+                <p>Оптовые поставки морепродуктов,<br />снеков и закусок.</p>
               </div>
               <div>
                 <h4>Контакты</h4>
@@ -73,7 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <p>Доставка по Хабаровску и ДВ. Минимальный заказ — от 10 000 ₽.</p>
               </div>
             </div>
-            <div className="footer-bottom">© {new Date().getFullYear()} nerka.pro</div>
+            <div className="footer-bottom">© 2011–{new Date().getFullYear()} <span className="logo-red">nerka</span><span className="logo-dot">.</span><span className="logo-red">pro</span></div>
           </div>
         </footer>
       </body>
