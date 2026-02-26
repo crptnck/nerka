@@ -84,6 +84,33 @@ body.scrolled .header-inner { height: 40px; }
 .chip:hover { color: #fff; background: var(--surface-hover); }
 .chip.active { background: var(--brand); color: #fff; border-color: var(--brand); }
 
+/* ---- Search ---- */
+.search-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 0 8px;
+  position: sticky; top: 56px; z-index: 40;
+  background: var(--bg);
+}
+body.scrolled .search-bar { top: 40px; }
+.search-input {
+  flex: 1; padding: 10px 14px;
+  background: var(--surface); color: #fff;
+  border: 1px solid var(--border); border-radius: 8px;
+  font-size: 14px; font-family: inherit;
+  transition: border-color 0.15s;
+}
+.search-input:focus { outline: none; border-color: var(--brand); }
+.search-input::placeholder { color: var(--muted); }
+.search-close {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 16px;
+  border-radius: 8px;
+  transition: all 0.15s;
+}
+.search-close:hover { color: #fff; background: var(--surface); }
+.chip-search { border-style: dashed; }
+
 /* ---- Product Grid ---- */
 .grid {
   display: grid;

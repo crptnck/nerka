@@ -191,9 +191,15 @@ export default function Catalog() {
   const [selected, setSelected] = useState<Product | null>(null);
   const [nextSectionIdx, setNextSectionIdx] = useState<number | null>(1);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [searchActive, setSearchActive] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchRef = useRef<HTMLInputElement>(null);
 
-  const showSections = filter === "Все";
-  const filtered = filter === "Все" ? products : products.filter((p) => p.category === filter);
+  const showSections = filter === "Все" && !searchActive;
+  const searchLower = searchQuery.toLowerCase();
+  const filtered = searchActive
+    ? products.filter((p) => p.name.toLowerCase().includes(searchLower))
+    : filter === "Все" ? products : products.filter((p) => p.category === filter);
 
   /* Группировка по категориям для секционного вида */
   const grouped = categories.slice(1).map(cat => ({
@@ -282,18 +288,36 @@ export default function Catalog() {
   return (
     <div className="container">
 
-      {/* ── Фильтры категорий ── */}
-      <section className="filters">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            className={`chip${filter === cat ? " active" : ""}`}
-            onClick={() => setFilter(cat)}
-          >
-            {cat}
+      {/* ── Фильтры / Поиск ── */}
+      {searchActive ? (
+        <div className="search-bar">
+          <input
+            ref={searchRef}
+            className="search-input"
+            type="text"
+            placeholder="Название товара..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            autoFocus
+          />
+          <button className="search-close" onClick={() => { setSearchActive(false); setSearchQuery(""); }}>✕</button>
+        </div>
+      ) : (
+        <section className="filters">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              className={`chip${filter === cat ? " active" : ""}`}
+              onClick={() => setFilter(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+          <button className="chip chip-search" onClick={() => { setSearchActive(true); setTimeout(() => searchRef.current?.focus(), 0); }}>
+            🔍 Поиск
           </button>
-        ))}
-      </section>
+        </section>
+      )}
 
       {/* ── Каталог: секции или плоская сетка ── */}
       {showSections && promoItems.length > 0 && (
