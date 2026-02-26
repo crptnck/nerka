@@ -109,7 +109,12 @@ body.scrolled .search-bar { top: 40px; }
   transition: all 0.15s;
 }
 .search-close:hover { color: #fff; background: var(--brand); }
-.chip-search { border-style: dashed; }
+.chip-search {
+  border: 1px dashed var(--brand);
+  color: var(--brand);
+  display: inline-flex; align-items: center; gap: 4px;
+  white-space: nowrap;
+}
 
 /* ---- Product Grid ---- */
 .grid {

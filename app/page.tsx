@@ -314,8 +314,7 @@ export default function Catalog() {
             </button>
           ))}
           <button className="chip chip-search" onClick={() => { setSearchActive(true); setTimeout(() => searchRef.current?.focus(), 0); }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            {" "}Поиск
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>&nbsp;Поиск
           </button>
         </section>
       )}
