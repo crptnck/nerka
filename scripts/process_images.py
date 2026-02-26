@@ -122,7 +122,16 @@ def process_one(raw_path, force=False):
 def main():
     force = "--force" in sys.argv
 
-    raw_files = sorted(RAW_DIR.glob("*.jpg"))
+    exts = ("*.jpg", "*.jpeg", "*.png", "*.webp", "*.heic", "*.heif", "*.tiff", "*.bmp")
+    raw_files = sorted(f for ext in exts for f in RAW_DIR.glob(ext))
+    # Дедупликация по stem (если есть и .jpg и .png с одним именем — берём первый)
+    seen = set()
+    unique = []
+    for f in raw_files:
+        if f.stem not in seen:
+            seen.add(f.stem)
+            unique.append(f)
+    raw_files = unique
     if not raw_files:
         print(f"⚠ Нет файлов в {RAW_DIR}")
         sys.exit(1)
