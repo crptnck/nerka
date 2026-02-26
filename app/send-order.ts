@@ -8,7 +8,8 @@ type OrderItem = { name: string; price: string; unit: string; qty: number };
 export function generateOrderNumber(): string {
   const d = new Date();
   const pad = (n: number) => String(n).padStart(2, "0");
-  return `${pad(d.getDate())}${pad(d.getMonth() + 1)}${String(d.getFullYear()).slice(2)}-${pad(d.getHours())}${pad(d.getMinutes())}`;
+  const rand = Math.random().toString(36).slice(2, 5);
+  return `${pad(d.getDate())}${pad(d.getMonth() + 1)}${String(d.getFullYear()).slice(2)}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}-${rand}`;
 }
 
 function parsePrice(s: string): number {
