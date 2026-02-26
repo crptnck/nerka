@@ -31,7 +31,6 @@ THUMB_DIR    = BASE / "thumb"      # 120×120 webp
 FULL_DIR     = BASE / "full"       # 400×400 webp
 FALLBACK_DIR = BASE / "fallback"   # 400×400 jpeg
 
-BG_COLOR = (10, 10, 10)  # #0a0a0a — цвет фона сайта
 
 # Размер → (dir, extension, target_size, target_kb, format)
 SIZES = {
@@ -52,16 +51,9 @@ def crop_center_square(img):
     return img.crop((left, top, left + side, top + side))
 
 
-def place_on_dark_bg(img, target_size):
-    """Размещение на тёмном фоне, 85% площади, центрировано"""
-    bg = Image.new("RGB", target_size, BG_COLOR)
-    max_dim = int(min(target_size) * 0.85)
-    resized = img.copy()
-    resized.thumbnail((max_dim, max_dim), Image.LANCZOS)
-    x = (target_size[0] - resized.width) // 2
-    y = (target_size[1] - resized.height) // 2
-    bg.paste(resized, (x, y))
-    return bg
+def crop_and_fill(img, target_size):
+    """Обрезка до квадрата и ресайз в target_size — заполняет всю площадь"""
+    return img.resize(target_size, Image.LANCZOS)
 
 
 def save_optimized(img, path, target_kb, fmt, min_q=10, max_q=85):
@@ -112,7 +104,7 @@ def process_one(raw_path, force=False):
             results[size_name] = out_path.stat().st_size / 1024
             continue
 
-        composed = place_on_dark_bg(img_sq, dimensions)
+        composed = crop_and_fill(img_sq, dimensions)
         kb = save_optimized(composed, out_path, target_kb, fmt)
         results[size_name] = kb
 
