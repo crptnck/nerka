@@ -42,6 +42,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   height: 56px;
   max-width: 1200px; margin: 0 auto; padding: 0 16px;
   transition: height 0.15s;
+  position: relative;
 }
 body.scrolled .header-inner { height: 40px; }
 .logo { display: flex; align-items: baseline; font-size: 24px; font-weight: 700; }
@@ -170,6 +171,16 @@ body.scrolled .header-inner { height: 40px; }
 .footer p, .footer a { font-size: 14px; color: var(--muted); line-height: 1.6; }
 .footer a:hover { color: #fff; }
 .footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-socials { display: flex; gap: 12px; margin-top: 12px; }
+.social-link {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--border);
+  color: var(--muted);
+  transition: all 0.15s;
+}
+.social-link:hover { background: var(--brand); color: #fff; }
 .footer-bottom {
   margin-top: 40px; padding-top: 24px;
   border-top: 1px solid var(--border);
@@ -303,7 +314,9 @@ body.scrolled .section-bar { top: 40px; }
 .section-group:last-child { padding-bottom: 48px; }
 /* ---- Cart icon (header) ---- */
 .cart-icon {
-  position: relative;
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
   display: flex; align-items: center; justify-content: center;
   width: 36px; height: 36px;
   color: #fff;

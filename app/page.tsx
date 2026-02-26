@@ -211,7 +211,8 @@ export default function Catalog() {
         const el = sectionRefs.current[i];
         if (el && el.getBoundingClientRect().top <= 50) current = i;
       }
-      setNextSectionIdx(current + 1 < grouped.length ? current + 1 : null);
+      const atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 60;
+      setNextSectionIdx(!atBottom && current + 1 < grouped.length ? current + 1 : null);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
