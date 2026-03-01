@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
             <HeaderCart />
             <div className="header-right">
-<a href="#contacts" className="header-phone">{"924\u202F403\u202F4203"}</a>
+<a href="#contacts" className="header-phone">{"+7\u202F924\u202F403\u202F4203"}</a>
             </div>
           </div>
         </header>
