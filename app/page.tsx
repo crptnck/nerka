@@ -256,7 +256,7 @@ export default function Catalog() {
           <span className="card-unit">/ {p.unit}</span>
           <div className="qty">
             <button className="qty-btn" onClick={(e) => { e.stopPropagation(); setQty(p.id, -1); }}>−</button>
-            <input className="qty-val" type="text" inputMode="numeric" value={cart[p.id] || 0} onClick={(e) => e.stopPropagation()} onChange={(e) => { e.stopPropagation(); const v = parseInt(e.target.value, 10); setQtyDirect(p.id, isNaN(v) ? 0 : v); }} />
+            <input className="qty-val" type="text" inputMode="numeric" maxLength={3} value={cart[p.id] || 0} onClick={(e) => e.stopPropagation()} onChange={(e) => { e.stopPropagation(); const v = parseInt(e.target.value, 10); setQtyDirect(p.id, isNaN(v) ? 0 : v); }} />
             <button className="qty-btn" onClick={(e) => { e.stopPropagation(); setQty(p.id, +1); }}>+</button>
           </div>
         </div>
@@ -371,7 +371,7 @@ export default function Catalog() {
                 <span className="modal-price-val">{selected.price} ₽<span className="modal-price-unit">/{selected.unit}</span></span>
                 <div className="modal-qty">
                   <button className="qty-btn" onClick={() => setQty(selected.id, -1)}>−</button>
-                  <input className="qty-val" type="text" inputMode="numeric" value={cart[selected.id] || 0} onChange={(e) => { const v = parseInt(e.target.value, 10); setQtyDirect(selected.id, isNaN(v) ? 0 : v); }} />
+                  <input className="qty-val" type="text" inputMode="numeric" maxLength={3} value={cart[selected.id] || 0} onChange={(e) => { const v = parseInt(e.target.value, 10); setQtyDirect(selected.id, isNaN(v) ? 0 : v); }} />
                   <button className="qty-btn" onClick={() => setQty(selected.id, +1)}>+</button>
                 </div>
                 <button className="btn btn-ok" onClick={() => setSelected(null)}>OK</button>

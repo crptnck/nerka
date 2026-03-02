@@ -70,7 +70,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const setQty = useCallback((id: number, delta: number) => {
     setCart((prev) => {
       const next = { ...prev };
-      const val = (next[id] ?? 0) + delta;
+      const val = Math.min((next[id] ?? 0) + delta, 999);
       if (val <= 0) delete next[id];
       else next[id] = val;
       return next;
@@ -80,8 +80,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const setQtyDirect = useCallback((id: number, value: number) => {
     setCart((prev) => {
       const next = { ...prev };
-      if (value <= 0) delete next[id];
-      else next[id] = value;
+      const clamped = Math.min(value, 999);
+      if (clamped <= 0) delete next[id];
+      else next[id] = clamped;
       return next;
     });
   }, []);

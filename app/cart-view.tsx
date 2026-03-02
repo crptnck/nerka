@@ -165,7 +165,7 @@ export default function CartView({ products }: { products: Product[] }) {
                     <span className="card-unit">/ {item.unit}</span>
                     <div className="qty">
                       <button className="qty-btn" onClick={() => setQty(item.id, -1)}>−</button>
-                      <input className="qty-val" type="text" inputMode="numeric" value={item.qty} onChange={(e) => { const v = parseInt(e.target.value, 10); setQtyDirect(item.id, isNaN(v) ? 0 : v); }} />
+                      <input className="qty-val" type="text" inputMode="numeric" maxLength={3} value={item.qty} onChange={(e) => { const v = parseInt(e.target.value, 10); setQtyDirect(item.id, isNaN(v) ? 0 : v); }} />
                       <button className="qty-btn" onClick={() => setQty(item.id, +1)}>+</button>
                     </div>
                   </div>
