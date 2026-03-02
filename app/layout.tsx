@@ -75,6 +75,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div id="delivery">
                 <h4>Доставка</h4>
                 <p>Доставка по Хабаровску и ДВ. Минимальный заказ — от 6 000 ₽. По любым вопросам звоните <a href="tel:+79244034203">+7 924 403-42-03</a> с 9 до 16, кроме выходных.</p>
+                <p>Адрес самовывоза и вообще: г. Хабаровск, пер. Гаражный 22А. с 9 до 16, кроме выходных.</p>
+              </div>
               </div>
             </div>
             <div className="footer-bottom">© 2011–{new Date().getFullYear()} <span className="logo-red">nerka</span><span className="logo-dot">.</span><span className="logo-red">pro</span></div>
