@@ -15,7 +15,7 @@ type Product = {
 };
 
 export default function CartView({ products }: { products: Product[] }) {
-  const { cart, setQty, clearCart, userData, saveUser, setView } = useCart();
+  const { cart, setQty, setQtyDirect, clearCart, userData, saveUser, setView } = useCart();
   const [comment, setComment] = useState("");
   const [step, setStep] = useState<"list" | "form" | "sending" | "done">("list");
   const [phone, setPhone] = useState(userData?.phone ?? "");
@@ -165,7 +165,7 @@ export default function CartView({ products }: { products: Product[] }) {
                     <span className="card-unit">/ {item.unit}</span>
                     <div className="qty">
                       <button className="qty-btn" onClick={() => setQty(item.id, -1)}>−</button>
-                      <span className="qty-val">{item.qty}</span>
+                      <input className="qty-val" type="text" inputMode="numeric" value={item.qty} onChange={(e) => { const v = parseInt(e.target.value, 10); setQtyDirect(item.id, isNaN(v) ? 0 : v); }} />
                       <button className="qty-btn" onClick={() => setQty(item.id, +1)}>+</button>
                     </div>
                   </div>

@@ -17,6 +17,7 @@ type CartCtx = {
   view: View;
   userData: UserData | null;
   setQty: (id: number, delta: number) => void;
+  setQtyDirect: (id: number, value: number) => void;
   clearCart: () => void;
   setView: (v: View) => void;
   saveUser: (data: UserData) => void;
@@ -76,6 +77,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
+  const setQtyDirect = useCallback((id: number, value: number) => {
+    setCart((prev) => {
+      const next = { ...prev };
+      if (value <= 0) delete next[id];
+      else next[id] = value;
+      return next;
+    });
+  }, []);
+
   const clearCart = useCallback(() => setCart({}), []);
 
   const saveUser = useCallback((data: UserData) => {
@@ -86,7 +96,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const totalItems = Object.keys(cart).length;
 
   return (
-    <Ctx.Provider value={{ cart, view, userData, setQty, clearCart, setView, saveUser, totalItems }}>
+    <Ctx.Provider value={{ cart, view, userData, setQty, setQtyDirect, clearCart, setView, saveUser, totalItems }}>
       {children}
     </Ctx.Provider>
   );
