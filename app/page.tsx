@@ -150,7 +150,7 @@ const products = [
   { id: 146, name: "Кета брюшки хк", price: "1 078", unit: "кг", stock: 7, category: "Цех", color: "#1e293b", image: "p146" },
   { id: 147, name: "Кета полуспинка хк", price: "1 345", unit: "кг", stock: 6, category: "Цех", color: "#1e293b", image: "p147" },
   { id: 148, name: "Соломка кеты", price: "2 220", unit: "кг", stock: 7, category: "Цех", color: "#1e293b", image: "p148" },
-  { id: 149, name: "Юкола кеты", price: "1 300", unit: "кг", stock: 5, category: "Цех", color: "#1e293b", image: "p149" },
+  { id: 149, name: "Юкола кеты", price: "1 680", unit: "кг", stock: 5, category: "Цех", color: "#1e293b", image: "p149" },
   { id: 150, name: "Икра минтая г/к", price: "1 650", unit: "кг", stock: 25, category: "Цех", color: "#1e293b", image: "p150" },
   { id: 151, name: "Терпуг х/к", price: "885", unit: "кг", stock: 1, category: "Цех", color: "#1e293b", image: "p151" },
   { id: 152, name: "Форели палочки хк", price: "2 780", unit: "кг", stock: 10, category: "Цех", color: "#1e293b", image: "p152" },
