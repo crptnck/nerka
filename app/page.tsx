@@ -157,7 +157,7 @@ const products = [
   { id: 152, name: "Форели палочки х/к", price: "2 780", unit: "кг", stock: 10, category: "Цех", color: "#1e293b", image: "p152" },
   { id: 153, name: "Юкола горбуша", price: "1 525", unit: "кг", stock: 3, category: "Цех", color: "#1e293b", image: "p153" },
   { id: 154, name: "Юкола форели", price: "2 780", unit: "кг", stock: 10, category: "Цех", color: "#1e293b", image: "p154" },
-  { id: 155, name: "Хе из сельди (2кг ведро) Океан", price: "975", unit: "шт", stock: 13, category: "Цех", color: "#1e293b", image: "p155" },
+  { id: 155, name: "Хе из сельди (2кг ведро)", price: "975", unit: "шт", stock: 13, category: "Цех", color: "#1e293b", image: "p155" },
   { id: 156, name: "Хе из сельди (500 гр.банка)", price: "300", unit: "шт", stock: 5, category: "Цех", color: "#1e293b", image: "p156" },
   { id: 157, name: "Горбуша палочки", price: "1 840", unit: "кг", stock: 2, category: "Цех", color: "#1e293b", image: "p157" },
   { id: 158, name: "Кета палочки", price: "2 675", unit: "кг", stock: 4, category: "Цех", color: "#1e293b", image: "p158" },
