@@ -2,6 +2,7 @@ import type { UserData } from "./cart-context";
 
 const BOT_TOKEN = process.env.NEXT_PUBLIC_TG_BOT_TOKEN ?? "";
 const CHAT_ID = process.env.NEXT_PUBLIC_TG_CHAT_ID ?? "";
+const ORDER_API = "/api/order.php";
 
 type OrderItem = { name: string; price: string; unit: string; qty: number };
 
@@ -52,12 +53,21 @@ export async function sendOrderToTelegram(
     .join("\n");
 
   try {
-    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    // Сначала пробуем через серверный прокси (обходит блокировку TG в РФ)
+    const res = await fetch(ORDER_API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: lines }),
+    });
+    if (res.ok) return true;
+
+    // Фоллбэк: прямой вызов Telegram API (работает из-за рубежа / через VPN)
+    const direct = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ chat_id: CHAT_ID, text: lines }),
     });
-    return res.ok;
+    return direct.ok;
   } catch {
     console.error("Failed to send order to Telegram");
     return false;
